@@ -21,6 +21,7 @@ If you contribute at all in any way to the project, please add your name to the 
 ## TO-DO
 - Who's sacrificing an old laptop to try and boot this thing to see what errors we get lol. Someone figure out how to make the code boot and see what errors post it in issues so we can fix them
 - Remove Profanity
+- Make a website for it
 
 ## Roadmap
 - Complete bootloader and create proper Makefile and linker.ld to place the kernel at `0x1000`
