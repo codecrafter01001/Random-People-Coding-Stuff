@@ -28,4 +28,5 @@ If you contribute at all in any way to the project, please add your name to the 
 - kotofyt
 - xtn59
 - u/EastConsequence3792
+- More people who sadly didn't put their name...
 
