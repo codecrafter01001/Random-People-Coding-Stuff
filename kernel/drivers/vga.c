@@ -31,6 +31,21 @@ void vga_clear(uint8_t color) {
 	}
 }
 
+// Ember2819: Add a scroll so if the screen fills you can scroll down
+void vga_scroll(uint8_t color) {
+	volatile uint16_t* buf = (volatile uint16_t*)VGA_TEXT_ADDR;
+
+	for (size_t row = 1; row < VGA_TEXT_HEIGHT; row++)
+		for (size_t col = 0; col < VGA_TEXT_WIDTH; col++)
+			buf[(row - 1) * VGA_TEXT_WIDTH + col] =
+				buf[row * VGA_TEXT_WIDTH + col];
+
+	for (size_t col = 0; col < VGA_TEXT_WIDTH; col++)
+		buf[(VGA_TEXT_HEIGHT - 1) * VGA_TEXT_WIDTH + col] = vga_entry(' ', color);
+
+	terminal_row = VGA_TEXT_HEIGHT - 1;
+}
+
 void move_tcursor(int x, int y) {
 	uint16_t pos = y * VGA_TEXT_WIDTH + x;
 
@@ -45,11 +60,8 @@ void putchar(char c, uint8_t COLOR) {
 	if (c == '\n') {
 		terminal_column = 0;
 		terminal_row++;
-		if (terminal_row == VGA_TEXT_HEIGHT) {
-			// do (almost) nothing, for now.
-			terminal_row--;
-			// TODO: add scrolling
-		}
+		if (terminal_row == VGA_TEXT_HEIGHT)
+			vga_scroll(COLOR);
 	}
 	else if (c == '\t') {
 		for (int j = 0; j < 4; j++) putchar(' ', COLOR);
@@ -83,5 +95,3 @@ void printf(char* data, uint8_t COLOR) {
 void set_termcolor(enum VGA_COLOR FG, enum VGA_COLOR BG) {
 	TERMINAL_COLOR = vga_entry_color(FG, BG);
 }
-
-
