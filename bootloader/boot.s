@@ -98,10 +98,14 @@ disk_error:
 	call	print
 
 	xor	al, al
-	mov	si, ax
-	call	itos
-	call	print			;; Error code
 
+	;; Convert the Error code into a string and display it
+	movzx	si, ah 
+	call	itos ;; Convert INT to STRING
+	mov si,di 
+	call	print
+
+	;; Print a newline
 	mov	si, NEWLINE		;; Newline
 	call	print
 	
