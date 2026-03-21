@@ -18,6 +18,22 @@ You can apply your contributions to the main project in two ways:
 
 If you contribute at all in any way to the project, please add your name to the list in the README or main.c file. I highly recommend using Github to make changes as codeshare is difficult to work on multiple files and is very disorganized at the moment. I would like to make codeshare more of a note and planning page as well as a place to gather names rather than a place where we are actually working on code to improve effeciency.
 
+## TO-DO
+- Create a command system
+- Implement shell (First fix printing and typing bugs. Line wraps act weird and backspace and shift are broken)
+- Remove Profanity
+
+## Needed Jobs
+- Dedecated tester: Must have a linux machine or linux vm running x86 to build the lastest version of the OS and distribute it on the website
+
+## Roadmap
+- Dynamic Memory Management
+- Shell
+   - With a basic command system
+- Storage management/filesystem
+- Internet Access
+- Package Manager
+- First Official Release
 
 # How do I compile and run this project?
 
@@ -56,23 +72,6 @@ elroylilly@gmail.com for any questions
 
 <img width="1920" height="1080" alt="theosbooted" src="https://github.com/user-attachments/assets/498e0981-27eb-4e7d-a306-26bc7ed75c6f" />
 
-## TO-DO
-- Create a command system
-- Implement shell (First fix printing and typing bugs. Line wraps act weird and backspace and shift are broken)
-- Remove Profanity
-
-## Needed Jobs
-- Dedecated tester: Must have a linux machine or linux vm running x86 to build the lastest version of the OS and distribute it on the website
-
-## Roadmap
-- Dynamic Memory Management
-- Shell
-   - With a basic command system
-- Storage management/filesystem
-- Internet Access
-- Package Manager
-- First Official Release
-
 ## Contributors: 
 - **Ember2819** (Founder & Manager)
 - Sifi11 (Founder)
@@ -85,5 +84,6 @@ elroylilly@gmail.com for any questions
 - kotofyt
 - xtn59
 - c-bass
+- MorganPG / u/MorganPG1 (added build instructions to readme)
 - u/EastConsequence3792
 
