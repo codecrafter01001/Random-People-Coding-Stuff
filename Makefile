@@ -23,12 +23,14 @@ LD_FLAGS = -m elf_i386 -T linker.ld
 
 KERNEL_OBJECTS = kernel/kernel.o kernel/ports.o kernel/mem.o
 DRIVER_OBJECTS = kernel/drivers/vga.o kernel/drivers/keyboard.o
+MISC_OBJECTS = kernel/terminal/terminal.o
 
 # Builds the final disk image
 all: os.img
+	
+# If no clang detected, use gcc
 
 %.o: %.c
-# If no GCC detected, use clang
 	$(CC) $(CC_FLAGS) $< -o $@ || $(CC2) $(CC_FLAGS) $< -o $@
 
 # Assemble the bootloader
@@ -46,9 +48,13 @@ kernel/ports.o: kernel/ports.c
 	$(CC) $(CC_FLAGS) $< -o $@ || $(CC2) $(CC_FLAGS) $< -o $@
 kernel/mem.o: kernel/mem.c
 	$(CC) $(CC_FLAGS) $< -o $@ || $(CC2) $(CC_FLAGS) $< -o $@
+
+kernel/terminal/terminal.o: kernel/terminal/terminal.c
+	$(CC) $(CC_FLAGS) $< -o $@ || $(CC2) $(CC_FLAGS) $< -o $@
+
 # Link all kernel objects 
-kernel.elf: $(KERNEL_OBJECTS) $(DRIVER_OBJECTS)
-	$(LD) $(LD_FLAGS) $(KERNEL_OBJECTS) $(DRIVER_OBJECTS) -o kernel.elf
+kernel.elf: $(KERNEL_OBJECTS) $(DRIVER_OBJECTS) $(MISC_OBJECTS)
+	$(LD) $(LD_FLAGS) $(KERNEL_OBJECTS) $(DRIVER_OBJECTS) $(MISC_OBJECTS) -o kernel.elf
 kernel.bin: kernel.elf
 	$(OBJCOPY) $(OBJCOPY_ARGS) kernel.elf kernel.bin
 	$(TRUNCATE) -s $(TRUNC_AMNT) kernel.bin
@@ -60,6 +66,6 @@ run: os.img
 	qemu-system-i386 -drive format=raw,file=os.img
 
 clean:
-	rm -f $(KERNEL_OBJECTS) kernel.bin bootloader/boot.bin os.img
+	rm -f $(KERNEL_OBJECTS) $(DRIVER_OBJECTS) $(MISC_OBJECTS) kernel.elf kernel.bin bootloader/boot.bin
 
 .PHONY: all run clean
