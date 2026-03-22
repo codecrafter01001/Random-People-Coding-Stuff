@@ -4,80 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Community OS Official Webite</title>
-  <style>
-  * { box-sizing: border-box; }
-  header { position: sticky; top: 0; z-index: 1000; }
-  body { background: linear-gradient(#E1E1E1, #C5D5E4); min-height: 100vh; max-width: 860px; margin: 0 auto; padding: 0 24px 48px; }
-  h1 { font-family: Helvetica; }
-  p { font-family: Helvetica; line-height: 1.65; }
-  h2 { font-family: Helvetica; margin-top: 1.6em; }
-  h3 { font-family: Helvetica; }
-  a { color: blue; }
-  a:visited { color: blue; }
-  a:hover { color: darkblue; }
-  .redirect { color: black; text-decoration: none; }
-  .redirect:visited { color: black; }
-  .redirect:hover { color: black; }
-  p[style*="margin-left"] { border-left: 2px solid #aaa; padding-left: 14px; margin-left: 0 !important; }
-  header h1 { font-size: 1.1rem; margin: 0; }
-  header h2 { font-size: 0.85rem; margin: 0; }
-  header div { padding: 8px 0; }
-  code {background-color: black; color: #F5F5F5; border-radius: 6px; overflow-x: auto; font-family: monospace;}
-  summary { list-style: none; cursor: pointer;}
-  summary::-webkit-details-marker {display: none;}
-  summary {cursor: pointer;}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<script>
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    window.location.href = "m/";
+  }
+</script>
 <header>
-  <div style="display: flex; gap: 20px; align-items: center; justify-content: center;">
+    <div class="topnav">
+      <a class="active"><b>The Community OS</b></a>
+      <a href="website/contribute.html">How to Contribute</a>
+      <a href="website/jobs.html">Available Jobs</a>
+      <a href="website/roadmap.html">Roadmap</a>
+      <a href="website/contributors.html">Credits</a>
+      <a href="website/faq.html">FAQ</a>
+      <a href="website/downloads.html">Download</a>
+    </div>
+</header>
 
-  <h1>
-  <p><a class="redirect" href="index.html" rel="noopener noreferrer" >The Community OS</a></p>
-  </h1>
-<h2>
-<p><a class="redirect" href="website/contribute.html" rel="noopener noreferrer" >How To Contribute</a></p>
-</h2>
-
-<h2>
-<p><a class="redirect" href="website/jobs.html" rel="noopener noreferrer" >Avalible Jobs</a></p>
-</h2>
-
-<h2>
-<p><a class="redirect" href="website/roadmap.html" rel="noopener noreferrer" >Roadmap</a></p>
-</h2>
-
-<h2>
-<p><a class="redirect" href="website/contributors.html" rel="noopener noreferrer" >Credits</a></p>
-</h2>
-
-<h2>
-<p><a class="redirect" href="website/downloads.html" rel="noopener noreferrer" >Downloads</a></p>
-</h2>
-
-<h2>
-<p><a class="redirect" href="website/Q&A.html" rel="noopener noreferrer" >Q&A Page</a></p>
-</h2>
-    
-</div>
-<hr>
-</header>  
-  
-  
   <h2>Our Vision</h2>
-  
+
   <p>We want to have a ton of people come together and make their own individual contributions to a barebones operating system. Our goal is to have an OS that is fully custom built from scratch that can boot on an x86 machine. Any contributions is greatly appreciated!</p>
 
   <p><a href="https://github.com/Ember2819/Random-People-Coding-Stuff" target="_blank" rel="noopener noreferrer">GitHub Repo</a></p>
-  
+
   <h2>Contact</h2>
-    
+
   <p>
     Email me at <a href="mailto:elroylilly@gmail.com">elroylilly@gmail.com</a> for any questions
     <br><br>
     If you would like to be a point of contact email me (elroylilly@gmail.com), and you can add your email here.
   </p>
-
+	<a href="/m/">Mobile version</a>
 </body>
 </html>
