@@ -1,9 +1,13 @@
 # COMOS Syntax Guide
 
 By Ember2819
+
 A simple, python-like programming language designed to run on Community OS.
+
 Files are created with the .comos extension.
+
 The abosolute max is around 350 lines.
+
 I promise I didn't just copy Python...
 ---
 
