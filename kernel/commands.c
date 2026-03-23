@@ -14,7 +14,7 @@ static Command commands[] = {
     { "setkeyus", cmd_setkeyus},
     { "setkeyuk", cmd_setkeyuk},
     { "clear", cmd_clear },
-    {"version", cmd_version },
+    { "version", cmd_version },
 };
 
 static int num_commands = sizeof(commands) / sizeof(commands[0]);
