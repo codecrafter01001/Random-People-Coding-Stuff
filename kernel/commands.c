@@ -80,7 +80,7 @@ static void cmd_clear(uint8_t color) {
 }
 
 static void cmd_version(uint8_t color) {
-    printf("\nCommunity OS v1.0\nUsing Community OS Bootloader 1.0\n", color);
+    printf("\nGeckoOS v1.0\nUsing GeckoOS Bootloader 1.0\n", color);
 }
 
 //Ember2819,COMOS language 
