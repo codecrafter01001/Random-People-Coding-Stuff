@@ -35,6 +35,7 @@ static void cmd_fsmount(uint8_t color);
 static void cmd_ls(uint8_t color);
 static void cmd_cat(uint8_t color);
 static void cmd_fsinfo(uint8_t color);
+static void cmd_touch(uint8_t color);
 
 static int streq(unsigned char *a, char *b);
 void run_command(unsigned char *input, uint8_t color);
