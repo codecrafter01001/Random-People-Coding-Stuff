@@ -13,6 +13,10 @@ struct drive_fs_t *fat16_drive_open( struct kdrive_t *drive, struct partition_t 
 int fat16_create_file( struct drive_fs_t *fs, char *name,
                        const uint8_t *content, size_t len );
 
+// ember2819 - overwrite an existing file (or create if not found)
+int fat16_write_file( struct drive_fs_t *fs, char *name,
+                      const uint8_t *content, size_t len );
+
 void fat16_print_info( struct drive_fs_t *fs, uint8_t color );
 
 #endif // FAT16_H
