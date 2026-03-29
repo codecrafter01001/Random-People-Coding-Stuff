@@ -277,12 +277,7 @@ static void cmd_touch(uint8_t color) {
 static GkState gk_state;
 
 static void cmd_gk(uint8_t color) {
-    // Demo program
-    static const char* demo =
-        "print(\"\nGeckoOS scripting language\")\n"
-
-    gk_init(&gk_state);
-    gk_run(&gk_state, demo);
+	printc("\nGeckoOS scripting language is running!\n");
 }
 
 static void cmd_gk_run_file(const char* filename, uint8_t color) {
