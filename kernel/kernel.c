@@ -8,26 +8,26 @@
 #include "drivers/drives.h"
 #include "layouts/kb_layouts.h"
 #include "terminal/terminal.h"
-#include "commands.h" // Included by Ember2819: Adds commands
-#include "colors.h" // Added by MorganPG1 to centralise colors into one file
+#include "commands.h"       // Included by Ember2819: Adds commands
+#include "colors.h"         // Added by MorganPG1 to centralise colors into one file
+#include "users/users.h"    // ember2819: user & permission system
 #include <stdint.h>
 
-// Ember2819: Add command functionality
 void process_input(unsigned char *buffer) {
     run_command(buffer, TERM_COLOR);
 }
 
 static void kmain();
 
-__attribute__((section(".text.entry"))) // Add section attribute so linker knows this should be at the start
+__attribute__((section(".text.entry")))
 void _entry() {
 
-	kalloc_init();
-    // Initialise display.
+    kalloc_init();
+
+    // Initialise display
     vga_clear(TERM_COLOR);
-    printc("----- GeckoOS v1.0 -----\n", TERM_COLOR);
+    printc("----- GeckoOS v1.1 -----\n", TERM_COLOR);
     printc("Built by random people on the internet.\n", TERM_COLOR);
-    printc("Use help to see available commands.\n", TERM_COLOR);
 
     // Setup keyboard layouts
     set_layout(LAYOUTS[0]);
@@ -44,25 +44,33 @@ void _entry() {
     printc("Test completed!\n", VGA_COLOR_LIGHT_GREY);
 
     drives_init();
-    kmain(); // _entry will be the initialization
+
+    users_init();
+    printc("User system initialised. Default accounts: root / guest\n", VGA_COLOR_LIGHT_GREY);
+
+    kmain();
 }
 
 static void kmain()
 {
-    // malloc(938); Idk if it works tbh
-    // outb(0x64, 0xfe); // Reboots the machine? (It acts weird in QEMU, but it reboots at least)
     get_kdrive(0);
 
-    while (1) {    // Shell loop
-        // Prints shell prompt
-        printc("> ", PROMPT_COLOR);
-        
-        //Obtains and processes the user input
+    do_login_prompt();
+
+    while (1) {
+        // Build the prompt: "username> "
+        user_t *u = users_current();
+        if (u) {
+            uint8_t pcolor = (u->ring == RING_ADMIN) ? VGA_COLOR_LIGHT_RED : PROMPT_COLOR;
+            printc(u->name, pcolor);
+            printc("> ", pcolor);
+        } else {
+            // Shouldn't reach here, but be safe
+            printc("> ", PROMPT_COLOR);
+        }
 
         unsigned char buff[512];
         input(buff, 512, TERM_COLOR);
         process_input(buff);
     }
-
-    //asm volatile ("hlt");
 }
